@@ -18,9 +18,9 @@ def array_to_image(arr):
 
 input_folder = 'images/input/'
 output_folder = 'images/output/'
-name = 'fine_art.jpg'
-k = 200
-iterations = 10000
+name = 'art.jpg'
+k = 2048
+iterations = 1000
 im_arr = image_to_array(load_image(input_folder + name))
 #output_img = array_to_image(im_arr)
 output_img = array_to_image(tractor_beam(im_arr, k=k, iterations=iterations))

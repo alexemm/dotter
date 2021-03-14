@@ -9,13 +9,13 @@ def get_probability_matrix(arr):
 
 
 def determine_datapoint_from_int(i, arr, prev_shape):
-    x = int(i % prev_shape[0])
-    y = int(i / prev_shape[0])
+    x = int(i % prev_shape[1])
+    y = int(i / prev_shape[1])
     return x, y
 
 
 def choose_k_points(prob_arr_2d, k, prev_shape):
-    chosen_data_values = np.random.choice(range(prob_arr_2d.size), size=k, p=prob_arr_2d.flatten(), replace=True)
+    chosen_data_values = np.random.choice(range(prob_arr_2d.size), size=k, p=prob_arr_2d.flatten(), replace=False)
     chosen_data_points = [determine_datapoint_from_int(i, prob_arr_2d, prev_shape) for i in chosen_data_values]
     return chosen_data_points, chosen_data_values
 
@@ -30,7 +30,7 @@ def create_dotted_array(chosen_points, arr):
     dotted_arr = np.zeros(arr.shape) + 255
     for point in chosen_points:
         try:
-            dotted_arr[point] = 0
+            dotted_arr[point[1], point[0]] = 0
         except IndexError:
             print(point)
             print('exit')
